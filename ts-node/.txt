@@ -1,0 +1,1 @@
+//* El archivo ts-node se inicia con npm start
