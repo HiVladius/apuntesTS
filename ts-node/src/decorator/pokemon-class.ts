@@ -34,13 +34,38 @@ function CheckValidPokemonId(){
         
     }
 }
-
+//* Decorador de propiedades ocultas
+function readOnly(isWritable: boolean = true): Function{
+    return function(target: any, propertykey: string, ){
+        const descriptor: PropertyDescriptor = {
+            get(){
+                console.log(this);
+                
+                return 'Hello World'
+            },
+            set(this, val){
+                console.log(this, val);
+                Object.defineProperty(this, propertykey, {
+                    value: val,
+                    writable: !isWritable,
+                    configurable: true,
+                    enumerable: false
+                })
+            }
+            
+        }
+           
+        return descriptor;
+    }
+}
 
 
 @bloquearPrototipo
 @printToConsoleConditional(false)
+
 export class Pokemon{
     
+    @readOnly(true)    
     public publicApi: string = 'https://pokeapi.co'
     
     constructor(
