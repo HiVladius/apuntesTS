@@ -21,3 +21,4 @@
   myFunction = saveTheWorld;
   console.log(myFunction());
 })();
+  
